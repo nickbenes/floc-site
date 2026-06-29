@@ -332,17 +332,20 @@
   }
 
   .hero-visual-toggle{
-    position:absolute;
-    top: var(--sp-4);
+    position:fixed;
+    bottom: var(--sp-5);
     right: var(--sp-4);
-    z-index:2;
+    z-index:200;
     display:flex;
+    align-items:center;
     gap: 2px;
-    background: rgba(255,255,255,0.85);
+    width:max-content;
+    background: rgba(255,255,255,0.92);
     border: 1px solid var(--ink-200);
     border-radius: 999px;
     padding: 3px;
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .hero-visual-toggle button{
     font-family: var(--font-body);
@@ -361,7 +364,7 @@
     color: var(--white);
   }
   @media (max-width: 520px){
-    .hero-visual-toggle{ top: var(--sp-3); right: var(--sp-3); }
+    .hero-visual-toggle{ bottom: var(--sp-4); right: var(--sp-3); }
   }
 
   .hero-inner{
