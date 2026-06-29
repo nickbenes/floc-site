@@ -293,48 +293,75 @@
       var(--ink-50);
   }
 
-  .hero-blob{
+  /* Hero visual — toggleable A/B options, replacing the earlier blob/glassmorphism
+     treatment. Both are one-time draw-in animations (stroke-dashoffset), not
+     continuous loops — per design.md: "animation should communicate information,
+     not entertainment." */
+  .hero-visual{
     position:absolute;
-    border-radius:50%;
-    filter: blur(70px);
-    opacity:0.55;
-    will-change: transform;
+    top:0;
+    right:0;
+    bottom:0;
+    width:60%;
     z-index:0;
+    display:none;
+    opacity:0.45;
+    pointer-events:none;
   }
-  .hero-blob.b1{
-    width: 420px; height:420px;
-    top: -120px; left: -80px;
-    background: radial-gradient(circle, var(--ocean), transparent 70%);
-    animation: driftA 26s ease-in-out infinite;
+  .hero-visual.active{ display:block; }
+  .hero-visual svg{
+    width:100%;
+    height:100%;
   }
-  .hero-blob.b2{
-    width: 380px; height:380px;
-    top: 40px; right: -120px;
-    background: radial-gradient(circle, var(--cyan), transparent 70%);
-    animation: driftB 32s ease-in-out infinite;
+  @media (max-width: 900px){
+    .hero-visual{ width:100%; opacity:0.3; }
   }
-  .hero-blob.b3{
-    width: 320px; height:320px;
-    bottom: -140px; left: 30%;
-    background: radial-gradient(circle, var(--sea), transparent 70%);
-    animation: driftC 28s ease-in-out infinite;
+  .hero-visual path.draw{
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+    animation: drawPath 1100ms var(--ease) forwards;
   }
-
-  @keyframes driftA{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(60px, 40px) scale(1.08); }
+  .hero-visual path.draw.delay{
+    animation-delay: 200ms;
   }
-  @keyframes driftB{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(-50px, 50px) scale(1.05); }
+  @keyframes drawPath{
+    to{ stroke-dashoffset: 0; }
   }
-  @keyframes driftC{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(40px, -30px) scale(1.1); }
-  }
-
   @media (prefers-reduced-motion: reduce){
-    .hero-blob{ animation: none !important; }
+    .hero-visual path.draw{ animation: none; stroke-dashoffset: 0; }
+  }
+
+  .hero-visual-toggle{
+    position:absolute;
+    top: var(--sp-4);
+    right: var(--sp-4);
+    z-index:2;
+    display:flex;
+    gap: 2px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--ink-200);
+    border-radius: 999px;
+    padding: 3px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-visual-toggle button{
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--ink-500);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    cursor:pointer;
+    transition: background-color 150ms var(--ease), color 150ms var(--ease);
+  }
+  .hero-visual-toggle button.active{
+    background: var(--ink-900);
+    color: var(--white);
+  }
+  @media (max-width: 520px){
+    .hero-visual-toggle{ top: var(--sp-3); right: var(--sp-3); }
   }
 
   .hero-inner{
@@ -553,23 +580,6 @@
 
   .about-copy strong{ color: var(--ink-900); font-weight:700; }
 
-  .about-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap: var(--sp-2);
-    margin-top: var(--sp-5);
-  }
-
-  .tag-chip{
-    font-size: var(--fs-small);
-    font-weight: 600;
-    color: var(--ink-700);
-    background: var(--white);
-    border: 1px solid var(--ink-200);
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-  }
-
   /* ================= CONTACT ================= */
   .contact{
     background: var(--ink-900);
@@ -705,18 +715,46 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="home">
-    <div class="hero-blob b1" aria-hidden="true"></div>
-    <div class="hero-blob b2" aria-hidden="true"></div>
-    <div class="hero-blob b3" aria-hidden="true"></div>
+
+    <!-- Visual A: path-around-an-obstacle — visualizes "the wall" the headline names -->
+    <div class="hero-visual variant-a" aria-hidden="true">
+      <svg viewBox="0 0 480 320" fill="none" preserveAspectRatio="xMidYMid slice">
+        <circle cx="50" cy="220" r="6" fill="#3B82F6"/>
+        <path class="draw" d="M50 220 C110 220, 140 220, 170 170" stroke="#3B82F6" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="168" y="80" width="26" height="160" rx="4" stroke="#9CA3AF" stroke-width="2" fill="white" fill-opacity="0.4"/>
+        <path class="draw delay" d="M170 170 C200 130, 215 70, 250 60 C300 46, 330 70, 360 95" stroke="#22D3EE" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="draw delay" d="M360 95 C400 125, 410 150, 430 170" stroke="#34D399" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="430" cy="170" r="6" fill="#34D399"/>
+      </svg>
+    </div>
+
+    <!-- Visual B: connected-node network, mirrors the About section's node illustration -->
+    <div class="hero-visual variant-b active" aria-hidden="true">
+      <svg viewBox="0 0 480 320" fill="none" preserveAspectRatio="xMidYMid slice">
+        <path d="M70 230L240 90L410 130" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"/>
+        <path d="M240 90L320 230" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"/>
+        <path class="draw" d="M70 230C130 200,150 130,240 90C290 67,360 70,410 130" stroke="#3B82F6" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="draw delay" d="M240 90C275 130,300 180,320 230" stroke="#22D3EE" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="70" cy="230" r="7" fill="#3B82F6"/>
+        <circle cx="240" cy="90" r="7" fill="#34D399"/>
+        <circle cx="410" cy="130" r="7" fill="#22D3EE"/>
+        <circle cx="320" cy="230" r="7" fill="#3B82F6"/>
+      </svg>
+    </div>
+
+    <div class="hero-visual-toggle" role="group" aria-label="Hero visual style">
+      <button type="button" data-variant="a">A: The wall</button>
+      <button type="button" data-variant="b" class="active">B: The network</button>
+    </div>
 
     <div class="wrap hero-inner">
       <div class="hero-copy reveal">
-        <span class="eyebrow">Front Lines of Code</span>
-        <h1>Practical AI and software engineering, <span class="accent">built for the hard environments.</span></h1>
-        <p class="lead">I'm Nick Benes — a principal engineer who ships production systems inside locked-down networks, and I teach developers, technical leaders, and parents how to use AI well without the hype.</p>
+        <span class="eyebrow">Shipping Code Inside the Wire</span>
+        <h1>The npm install hangs. The error is ETIMEDOUT. <span class="accent">Nobody told you this would happen.</span></h1>
+        <p class="lead">I'm Nick Benes — I ship production software inside locked-down DoD networks, and I'm writing down what actually gets you through Zone B's walls. (I also write about AI for engineering teams and for busy parents — more below.)</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#work">
-            See the work
+            See the course
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a class="btn btn-secondary" href="#about">
@@ -842,20 +880,13 @@
 
       <div class="about-copy reveal">
         <span class="eyebrow">About</span>
-        <h2 style="margin-top:0.75rem; margin-bottom:1.5rem;">A mathematician who ended up building software</h2>
+        <h2 style="margin-top:0.75rem; margin-bottom:1.5rem;">A mathematician who ended up rebuilding a system in a war zone</h2>
 
-        <p>I'm <strong>Nick Benes</strong> — Gregory, professionally. I studied math because I liked finding solutions, not because I had a career plan for it. I ended up in software because I wanted to help people use what I built, not just admire it.</p>
+        <p>In 2010, I was the "math guy" in charge of tracking 100,000 US troops in Afghanistan at the peak of the surge. The systems we had weren't built for what was being demanded at the front lines, so I learned to code in ways people could actually use, and rebuilt them. By the time I left, my office ran the mission with fewer than half the personnel it started with — and the system stayed in use across Afghanistan for almost a decade.</p>
 
-        <p>After active duty in the Navy and a PhD in dynamical systems and computational neuroscience, I moved into data science, then defense contracting, then dashboards that turn unreadable data into decisions people can actually act on. I served as the Office of Naval Research's first Chief Data Officer, stood up its data and analytics division, and today I'm a principal engineer on an Army personnel system used by tens of thousands of people every week.</p>
+        <p>That's the pattern I keep repeating. A PhD in dynamical systems and computational neuroscience led to data science, then defense contracting, then — today — principal engineer on an Army personnel system used by 50,000+ people every week, after standing up the Office of Naval Research's first data and analytics division.</p>
 
-        <p><strong>Front Lines of Code</strong> is what I build on the side: practical courses for the same problems I run into daily — developers boxed in by restrictive networks, technical leaders trying to use AI without losing their judgment, and parents trying to figure out what AI actually means for their kids. No hype, no magic. Just what's worked, what hasn't, and what I'd tell a colleague over coffee.</p>
-
-        <div class="about-tags">
-          <span class="tag-chip">Principal Software Engineer</span>
-          <span class="tag-chip">Former ONR Chief Data Officer</span>
-          <span class="tag-chip">PhD, Mathematics</span>
-          <span class="tag-chip">LCDR, US Navy Reserve</span>
-        </div>
+        <p><strong>Front Lines of Code</strong> is what I build on the side: courses for the same fronts I live on daily — developers boxed in by restrictive networks, engineers learning to work with AI as a teammate rather than autocomplete, and parents (mine included) figuring out what AI actually means for their kids. No hype, no magic. Just what's worked, what hasn't, and what I'd tell a colleague over coffee.</p>
       </div>
     </div>
   </section>
@@ -924,6 +955,33 @@
       if (navToggle) navToggle.checked = false;
     });
   });
+
+  // Hero visual A/B toggle — review-only control, not meant to ship to launch.
+  // Remembers the last choice in localStorage so reloading during review doesn't
+  // reset it back to the default.
+  (function(){
+    var STORAGE_KEY = 'floc-hero-visual';
+    var toggle = document.querySelector('.hero-visual-toggle');
+    if (!toggle) return;
+
+    function setVariant(variant){
+      document.querySelectorAll('.hero-visual').forEach(function(el){
+        el.classList.toggle('active', el.classList.contains('variant-' + variant));
+      });
+      toggle.querySelectorAll('button').forEach(function(btn){
+        btn.classList.toggle('active', btn.dataset.variant === variant);
+      });
+      try { localStorage.setItem(STORAGE_KEY, variant); } catch (e) { /* ignore */ }
+    }
+
+    toggle.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){ setVariant(btn.dataset.variant); });
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+    if (saved === 'a' || saved === 'b') setVariant(saved);
+  })();
 </script>
 
 </body>
