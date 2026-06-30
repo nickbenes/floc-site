@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI for Busy Parents — Front Lines of Code</title>
+<meta name="description" content="A free webinar plus five practical modules. Privacy-aware, jargon-free, built with a skeptic. Reduce the mental load — don't add to it." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments)},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n)})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account','2481851');</script>
+<style>
+  :root{
+    --ocean:#3B82F6;--ocean-dark:#2563EB;--sea:#34D399;--cyan:#22D3EE;
+    --ink-900:#111827;--ink-700:#374151;--ink-500:#6B7280;--ink-400:#9CA3AF;
+    --ink-200:#E5E7EB;--ink-100:#F3F4F6;--ink-50:#F9FAFB;--white:#FFFFFF;
+    --font:'Inter',system-ui,sans-serif;
+    --fs-h1:clamp(2.25rem,4vw+1rem,3.5rem);
+    --fs-h2:clamp(1.625rem,2vw+1rem,2.25rem);
+    --fs-h3:clamp(1.125rem,0.5vw+1rem,1.375rem);
+    --fs-lead:clamp(1rem,0.5vw+0.875rem,1.1875rem);
+    --fs-body:1rem;--fs-small:0.875rem;--fs-eyebrow:0.8125rem;
+    --sp-1:0.5rem;--sp-2:0.75rem;--sp-3:1rem;--sp-4:1.5rem;--sp-5:2rem;
+    --sp-6:3rem;--sp-7:4rem;--sp-8:6rem;
+    --max-width:1200px;--max-reading:760px;--radius-md:14px;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font);color:var(--ink-900);background:var(--white);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  h1,h2,h3{font-family:var(--font);font-weight:800;line-height:1.12;letter-spacing:-0.02em;color:var(--ink-900);}
+  h2{font-size:var(--fs-h2);}
+  h3{font-size:var(--fs-h3);font-weight:700;letter-spacing:-0.01em;}
+  p{color:var(--ink-700);}
+  .lead{font-size:var(--fs-lead);color:var(--ink-700);}
+  .eyebrow{font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ocean-dark);}
+  .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding-left:var(--sp-4);padding-right:var(--sp-4);}
+  section{padding-top:var(--sp-8);padding-bottom:var(--sp-8);}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--ocean);outline-offset:3px;border-radius:4px;}
+
+  .site-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink-200);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:var(--sp-2);padding-bottom:var(--sp-2);gap:var(--sp-4);}
+  .brand{display:flex;align-items:center;gap:var(--sp-2);font-weight:700;font-size:1.0625rem;color:var(--ink-900);white-space:nowrap;}
+  .brand-mark{width:30px;height:30px;flex-shrink:0;}
+  .nav-links{display:flex;align-items:center;gap:var(--sp-5);}
+  .nav-links a{font-size:var(--fs-small);font-weight:600;color:var(--ink-700);padding:var(--sp-1) 0;position:relative;transition:color 180ms var(--ease);}
+  .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--ocean);transform:scaleX(0);transform-origin:left;transition:transform 220ms var(--ease);}
+  .nav-links a:hover{color:var(--ink-900);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-actions{display:flex;align-items:center;gap:var(--sp-3);}
+  .btn{display:inline-flex;align-items:center;gap:var(--sp-1);font-family:var(--font);font-weight:600;font-size:var(--fs-small);padding:0.65rem 1.25rem;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 180ms var(--ease),color 180ms var(--ease);}
+  .btn svg{width:16px;height:16px;flex-shrink:0;}
+  .btn-primary{background:var(--ocean);color:var(--white);box-shadow:0 1px 2px rgba(17,24,39,0.08);}
+  .btn-primary:hover{background:var(--ocean-dark);transform:translateY(-1px);box-shadow:0 8px 20px rgba(59,130,246,0.28);}
+  .btn-secondary{background:transparent;color:var(--ink-900);border-color:var(--ink-200);}
+  .btn-secondary:hover{border-color:var(--ink-400);transform:translateY(-1px);}
+  .btn-nav{padding:0.55rem 1.1rem;}
+  .nav-toggle-checkbox{display:none;}
+  .nav-toggle-label{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;cursor:pointer;border:1px solid var(--ink-200);}
+  .nav-toggle-label svg{width:20px;height:20px;}
+  @media(max-width:760px){
+    .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1px solid var(--ink-200);box-shadow:0 12px 24px rgba(17,24,39,0.06);max-height:0;overflow:hidden;opacity:0;transition:max-height 260ms var(--ease),opacity 200ms var(--ease);}
+    .nav-toggle-checkbox:checked~.nav-links{max-height:320px;opacity:1;}
+    .nav-toggle-label{display:flex;}
+  }
+  @media(max-width:520px){.brand{font-size:0.9375rem;}.brand-mark{width:26px;height:26px;}.btn-nav{padding:0.5rem 0.8rem;font-size:0.8125rem;}.btn-nav svg{display:none;}}
+
+  .course-header{
+    padding-top:var(--sp-8);padding-bottom:var(--sp-8);
+    background:radial-gradient(circle at 20% 20%, rgba(52,211,153,0.14), transparent 55%),
+      radial-gradient(circle at 80% 10%, rgba(34,211,238,0.10), transparent 50%),
+      var(--ink-50);
+  }
+  .course-header-inner{max-width:var(--max-reading);}
+  .course-header .eyebrow{display:block;margin-bottom:var(--sp-3);}
+  .course-header h1{font-size:var(--fs-h1);margin-bottom:var(--sp-4);}
+  .course-header .lead{margin-bottom:var(--sp-5);}
+  .course-ctas{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-bottom:var(--sp-6);}
+  .course-ctas .btn{padding:0.85rem 1.6rem;font-size:0.95rem;}
+  .course-meta{display:flex;gap:var(--sp-5);flex-wrap:wrap;padding-top:var(--sp-5);border-top:1px solid var(--ink-200);}
+  .meta-item{display:flex;flex-direction:column;gap:3px;}
+  .meta-label{font-size:0.75rem;font-weight:600;color:var(--ink-400);letter-spacing:0.05em;text-transform:uppercase;}
+  .meta-value{font-size:0.95rem;font-weight:700;color:var(--ink-900);}
+  .status-badge{display:inline-block;background:rgba(52,211,153,0.12);color:#065F46;font-size:0.8125rem;font-weight:600;padding:0.25rem 0.75rem;border-radius:999px;border:1px solid rgba(52,211,153,0.3);}
+  .free-badge{display:inline-block;background:rgba(59,130,246,0.10);color:var(--ocean-dark);font-size:0.8125rem;font-weight:600;padding:0.25rem 0.75rem;border-radius:999px;border:1px solid rgba(59,130,246,0.2);}
+
+  .section-head{max-width:var(--max-reading);margin-bottom:var(--sp-6);}
+  .section-head .eyebrow{display:block;margin-bottom:var(--sp-2);}
+  .section-head p{margin-top:var(--sp-3);}
+
+  /* FORMAT OVERVIEW */
+  .format-section{background:var(--white);}
+  .format-cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-bottom:var(--sp-5);}
+  @media(max-width:700px){.format-cards{grid-template-columns:1fr;}}
+  .format-card{border-radius:var(--radius-md);padding:var(--sp-5);border:1px solid var(--ink-200);}
+  .format-card.free{background:var(--ink-900);color:var(--white);border-color:transparent;}
+  .format-card.paid{background:var(--white);}
+  .format-card .eyebrow{display:block;margin-bottom:var(--sp-2);}
+  .format-card.free .eyebrow{color:var(--cyan);}
+  .format-card h3{font-size:1.25rem;margin-bottom:var(--sp-2);}
+  .format-card.free h3{color:var(--white);}
+  .format-card p{font-size:0.9375rem;}
+  .format-card.free p{color:var(--ink-400);}
+  .format-price{font-size:1.75rem;font-weight:800;margin-top:var(--sp-3);color:var(--ink-900);}
+  .format-card.free .format-price{color:var(--white);}
+  .format-note{background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-md);padding:var(--sp-4);font-size:0.9375rem;color:var(--ink-700);}
+  .format-note strong{color:var(--ink-900);font-weight:700;}
+
+  /* AUDIENCE */
+  .audience-section{background:var(--ink-50);}
+  .audience-cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);}
+  @media(max-width:700px){.audience-cards{grid-template-columns:1fr;}}
+  .audience-card{background:var(--white);border:1px solid var(--ink-200);border-radius:var(--radius-md);padding:var(--sp-5);}
+  .audience-card .eyebrow{display:block;margin-bottom:var(--sp-2);font-size:0.75rem;}
+  .audience-card h3{font-size:1.0625rem;margin-bottom:var(--sp-3);}
+  .audience-card p{font-size:0.9375rem;}
+
+  /* CURRICULUM */
+  .curriculum-section{background:var(--white);}
+  .curriculum-track{margin-bottom:var(--sp-6);}
+  .track-header{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);}
+  .track-badge{font-size:0.8125rem;font-weight:600;padding:0.35rem 1rem;border-radius:999px;}
+  .track-badge.free{background:var(--ink-900);color:var(--white);}
+  .track-badge.paid{background:var(--ocean);color:var(--white);}
+  .track-header h3{font-size:1.125rem;margin:0;}
+  .module-list{display:flex;flex-direction:column;gap:var(--sp-3);}
+  .module-card{border:1px solid var(--ink-200);border-radius:var(--radius-md);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-4);align-items:start;}
+  .module-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9375rem;flex-shrink:0;}
+  .module-card h3{font-size:1rem;margin-bottom:var(--sp-1);}
+  .module-card p{font-size:0.9375rem;}
+  .module-tags{display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-top:var(--sp-2);}
+  .module-tag{font-size:0.8125rem;font-weight:500;color:var(--ink-700);background:var(--ink-100);padding:0.2rem 0.6rem;border-radius:999px;}
+
+  /* OUTCOMES */
+  .outcomes-section{background:var(--ink-50);}
+  .outcomes-list{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-3);}
+  @media(max-width:700px){.outcomes-list{grid-template-columns:1fr;}}
+  .outcome-item{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-4);background:var(--white);border:1px solid var(--ink-200);border-radius:var(--radius-md);}
+  .outcome-check{flex-shrink:0;width:28px;height:28px;background:rgba(52,211,153,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .outcome-check svg{width:14px;height:14px;stroke:#065F46;stroke-width:2.5;}
+  .outcome-item p{font-size:0.9375rem;color:var(--ink-700);}
+
+  /* INSTRUCTOR */
+  .instructor-section{background:var(--white);}
+  .instructor-inner{display:grid;grid-template-columns:200px 1fr;gap:var(--sp-7);align-items:start;}
+  @media(max-width:700px){.instructor-inner{grid-template-columns:1fr;}}
+  .instructor-portrait{border-radius:var(--radius-md);border:1px solid var(--ink-200);background:radial-gradient(circle at 35% 30%, rgba(52,211,153,0.15), transparent 60%),radial-gradient(circle at 70% 70%, rgba(34,211,238,0.10), transparent 55%),var(--ink-50);aspect-ratio:1;display:flex;align-items:center;justify-content:center;}
+  .instructor-portrait svg{width:60%;}
+  .instructor-copy h2{margin-bottom:var(--sp-3);}
+  .instructor-copy p{font-size:1.0625rem;margin-bottom:var(--sp-4);}
+  .instructor-copy p:last-child{margin-bottom:0;}
+  .instructor-copy strong{color:var(--ink-900);font-weight:700;}
+
+  /* WAITLIST */
+  .waitlist-section{background:var(--ink-900);color:var(--white);text-align:center;}
+  .waitlist-section .eyebrow{color:var(--cyan);}
+  .waitlist-section h2{color:var(--white);margin-bottom:var(--sp-3);}
+  .waitlist-section .lead{color:var(--ink-200);max-width:560px;margin:0 auto var(--sp-6);}
+  .signup-form{display:flex;gap:var(--sp-2);justify-content:center;flex-wrap:wrap;max-width:500px;margin:0 auto;}
+  .signup-form input[type="email"]{flex:1;min-width:200px;padding:0.85rem 1.25rem;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.07);color:var(--white);font-family:var(--font);font-size:var(--fs-body);outline:none;transition:border-color 180ms var(--ease);}
+  .signup-form input[type="email"]::placeholder{color:var(--ink-500);}
+  .signup-form input[type="email"]:focus{border-color:rgba(255,255,255,0.45);}
+  .signup-form .btn-primary{padding:0.85rem 1.6rem;white-space:nowrap;}
+  .signup-note{margin-top:var(--sp-3);font-size:var(--fs-small);color:var(--ink-500);}
+
+  footer{background:var(--ink-900);color:var(--ink-400);padding-top:var(--sp-5);padding-bottom:var(--sp-5);border-top:1px solid rgba(255,255,255,0.08);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-3);font-size:var(--fs-small);}
+  .footer-links{display:flex;gap:var(--sp-4);}
+  .footer-links a{color:var(--ink-400);transition:color 180ms var(--ease);}
+  .footer-links a:hover{color:var(--white);}
+  .skip-link{position:absolute;left:-9999px;top:auto;background:var(--ocean);color:var(--white);padding:0.5rem 1rem;border-radius:8px;z-index:200;}
+  .skip-link:focus{left:var(--sp-4);top:var(--sp-2);}
+  @media(max-width:600px){section{padding-top:var(--sp-6);padding-bottom:var(--sp-6);}.course-header{padding-top:var(--sp-6);padding-bottom:var(--sp-6);}}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Front Lines of Code, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" stroke="#3B82F6" stroke-width="2"/>
+        <path d="M9 20L14 12L18 17L23 9" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="23" cy="9" r="2" fill="#22D3EE"/>
+      </svg>
+      Front Lines of Code
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#work">All Courses</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-nav" href="#waitlist">
+        Join the early list
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation menu" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="#111827" stroke-width="2" stroke-linecap="round"/></svg>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="course-header">
+    <div class="wrap">
+      <div class="course-header-inner">
+        <span class="eyebrow">Course · Parents</span>
+        <h1>AI for Busy Parents</h1>
+        <p class="lead">Your brain is always full. There's a tool that can hold some of that — but the hype, the privacy concerns, and the "AI forgot everything again" failures make it hard to trust. This course is built around that skepticism, not around dismissing it.</p>
+        <div class="course-ctas">
+          <a class="btn btn-primary" href="#waitlist">
+            Notify me when this opens
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="index.html#work">See all courses</a>
+        </div>
+        <div class="course-meta">
+          <div class="meta-item">
+            <span class="meta-label">Entry point</span>
+            <span class="free-badge">Free webinar</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Full course</span>
+            <span class="meta-value">$49 — 5 self-paced modules</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="status-badge">Coming 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="format-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Start free. Pay only if it's worth it.</h2>
+        <p>The webinar teaches what AI can actually do for your family — live demos, no subscription needed, quick wins you can try that night. The paid course walks you through building each system yourself, one platform at a time.</p>
+      </div>
+      <div class="format-cards">
+        <div class="format-card free">
+          <span class="eyebrow">Entry point · Free</span>
+          <h3>Live Webinar</h3>
+          <p>60 minutes. Concepts and live demos on Claude Projects — no subscription needed to attend. You'll leave with three things you can try that night.</p>
+          <div class="format-price">Free</div>
+        </div>
+        <div class="format-card paid">
+          <span class="eyebrow">Full course · Paid</span>
+          <h3>5 Guided Build Modules</h3>
+          <p>Self-paced video walkthroughs, templates, and live office hours. You build every system alongside the instructor, on whichever platform you choose.</p>
+          <div class="format-price">$49</div>
+        </div>
+      </div>
+      <div class="format-note">
+        <strong>How these connect:</strong> The free webinar shows you <em>what</em> AI can do. The paid modules walk you through <em>building</em> each system yourself. You'll know if it's worth a $20/month subscription before you pay for one.
+      </div>
+    </div>
+  </section>
+
+  <section class="audience-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Who it's for</span>
+        <h2>The conflicted parent — not the convert</h2>
+        <p>This isn't for parents who are already all-in on AI. It's for the ones who tried it once, hit a wall, and gave up — or who are still figuring out whether to trust it at all.</p>
+      </div>
+      <div class="audience-cards">
+        <div class="audience-card">
+          <span class="eyebrow">The burned parent</span>
+          <h3>"I tried it. It forgot everything overnight."</h3>
+          <p>You set up a chat with your family info, used it for a week, and came back to find it had no memory of any of it. That's a real product limitation, not user error — and there's a specific fix that most people never find because it's buried in a settings menu. That fix is the first thing this course covers.</p>
+        </div>
+        <div class="audience-card">
+          <span class="eyebrow">The skeptic</span>
+          <h3>"I'm not anti-AI. I just haven't seen it earn its place."</h3>
+          <p>You have a healthy distrust of hype. You're not looking for someone to convince you AI is amazing — you're looking for someone to show you what it actually does, in plain language, without the sales pitch. My wife Maureen built this course alongside me for exactly that reader. She came in skeptical too.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="curriculum-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Curriculum</span>
+        <h2>One webinar. Five modules. Real results.</h2>
+      </div>
+
+      <div class="curriculum-track">
+        <div class="track-header">
+          <span class="track-badge free">Free · Webinar</span>
+          <h3>What AI Can Actually Do for Your Family</h3>
+        </div>
+        <div class="module-list">
+          <div class="module-card" style="background:var(--ink-50);">
+            <div class="module-num" style="background:var(--ink-900);color:var(--white);">W</div>
+            <div>
+              <h3>60-minute live demo session — no subscription, no setup, just watch</h3>
+              <p>The mental load problem. What a context window is and why AI "forgets" — and the one trick that fixes 80% of frustrations. Then three live demos: a Family Brain project set up in real time, a week of school emails triaged in under two minutes, and a meal plan generated from scratch based on your family's preferences.</p>
+              <div class="module-tags">
+                <span class="module-tag">What context means</span>
+                <span class="module-tag">Platform comparison</span>
+                <span class="module-tag">Live demos</span>
+                <span class="module-tag">Privacy basics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="curriculum-track">
+        <div class="track-header">
+          <span class="track-badge paid">Paid · $49 · 5 modules</span>
+          <h3>Build each system yourself, step by step</h3>
+        </div>
+        <div class="module-list">
+
+          <div class="module-card">
+            <div class="module-num" style="background:rgba(59,130,246,0.12);color:var(--ocean-dark);">1</div>
+            <div>
+              <h3>Your Family Brain — Persistent Context That Actually Works</h3>
+              <p>Set up a Claude Project with your family's full context: names, allergies, schedules, preferences. Solve the "AI forgot everything" problem for good. Includes a platform comparison (Claude.ai vs. Gemini vs. ChatGPT) so you know what you're paying for before you pay for it.</p>
+              <div class="module-tags">
+                <span class="module-tag">~45 min</span>
+                <span class="module-tag">Claude.ai · Gemini</span>
+                <span class="module-tag">Family profile template</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-num" style="background:rgba(52,211,153,0.12);color:#065F46;">2</div>
+            <div>
+              <h3>Email Triage — Never Miss a School Deadline Again</h3>
+              <p>A reusable prompt that turns a paste of school emails into a sorted list: action items, deadlines, FYI-only, and drafted responses — in your voice, from examples you provide. Pinned to your Project so it's one click every morning.</p>
+              <div class="module-tags">
+                <span class="module-tag">~40 min</span>
+                <span class="module-tag">Any platform</span>
+                <span class="module-tag">Response templates</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-num" style="background:rgba(34,211,238,0.12);color:#0e7490;">3</div>
+            <div>
+              <h3>Meal Planning + Grocery Lists on Autopilot</h3>
+              <p>Weekly meal plans built around your family's schedule, dietary restrictions, and what's in the fridge. Auto-generates a consolidated grocery list organized by store section. Builds a "family favorites" memory over time so the suggestions keep improving.</p>
+              <div class="module-tags">
+                <span class="module-tag">~35 min</span>
+                <span class="module-tag">Any platform</span>
+                <span class="module-tag">Chaining prompts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-num" style="background:rgba(139,58,15,0.10);color:#7c2d12;">4</div>
+            <div>
+              <h3>Vibe-Code a Bills Tracker — No Spreadsheet Required</h3>
+              <p>Describe what you want in plain English. Watch the AI write the code. Test and iterate — no coding knowledge required. You'll build a working interactive bills tracker live, then customize it with your actual bills and due dates. Module 4 teaches vibe-coding as a skill, not a gimmick.</p>
+              <div class="module-tags">
+                <span class="module-tag">~50 min</span>
+                <span class="module-tag">Claude Artifacts</span>
+                <span class="module-tag">No coding needed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-num" style="background:rgba(26,58,92,0.10);color:#1e3a5f;">5</div>
+            <div>
+              <h3>The Career Assistant — Résumés, Cover Letters, Interview Prep</h3>
+              <p>A separate AI Project for your professional life — your résumé, LinkedIn summary, and target roles loaded in. Tailored cover letters in three minutes from a job description. Interview prep questions generated from the same JD. Running log of applications as you go.</p>
+              <div class="module-tags">
+                <span class="module-tag">~45 min</span>
+                <span class="module-tag">Claude Projects</span>
+                <span class="module-tag">Teaching your voice</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Outcomes</span>
+        <h2>What you leave with</h2>
+      </div>
+      <div class="outcomes-list">
+        <div class="outcome-item">
+          <div class="outcome-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <p>A working Family Brain project with your family's full context — no more re-explaining everything</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <p>A daily email digest prompt that surfaces what matters and drafts responses in your voice</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <p>A meal planning system that knows your family's preferences and generates grocery lists automatically</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <p>Confidence to vibe-code small tools for other problems — no programming background required</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="instructor-section">
+    <div class="wrap">
+      <div class="instructor-inner">
+        <div class="instructor-portrait" role="img" aria-label="Abstract arc connecting two node clusters">
+          <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <circle cx="100" cy="100" r="92" stroke="#E5E7EB" stroke-width="1.5"/>
+            <path d="M45 130C60 100 80 70 100 70C120 70 140 100 155 130" stroke="#34D399" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="45" cy="130" r="7" fill="#3B82F6"/>
+            <circle cx="100" cy="70" r="7" fill="#34D399"/>
+            <circle cx="155" cy="130" r="7" fill="#22D3EE"/>
+            <circle cx="68" cy="88" r="4" fill="#34D399" opacity="0.5"/>
+            <circle cx="132" cy="88" r="4" fill="#22D3EE" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="instructor-copy">
+          <span class="eyebrow" style="display:block;margin-bottom:var(--sp-2);">Instructors</span>
+          <h2>Nick and Maureen Benes</h2>
+          <p>Nick is an engineer who's spent a decade building systems under constraint — from DoD networks to a daily AI-powered operating system for his own family. He uses the tools he teaches, including the exact family-brain, meal-planning, and email workflows in this course.</p>
+          <p><strong>Maureen came at this skeptical.</strong> She has an ABD in trauma and grief research, five kids, and a healthy suspicion of anything that promises to "solve" the mental load of parenting. She shaped every module in this course — the privacy framing, the realistic expectations, the places where AI genuinely helps and the places where it doesn't. If the course passes her test, it'll pass yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist-section" id="waitlist">
+    <div class="wrap">
+      <span class="eyebrow">Early Access</span>
+      <h2>Get notified when the webinar and course open</h2>
+      <p class="lead">The free webinar goes first. If you're on this list, you'll get an invitation before it opens to the public — and early access to the paid course when it launches.</p>
+      <div class="ml-embedded" data-form="3g4kEq"></div>
+      <p class="signup-note">No spam. You'll hear from us when the webinar opens — that's it until then.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>&copy; 2026 Front Lines of Code. Built by Nick Benes.</span>
+    <div class="footer-links">
+      <a href="index.html#work">All Courses</a>
+      <a href="https://github.com/nickbenes" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/nickbenes" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){ if(navToggle) navToggle.checked = false; });
+  });
+</script>
+</body>
+</html>
