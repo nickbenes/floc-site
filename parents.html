@@ -66,7 +66,8 @@
     .nav-toggle-checkbox:checked~.nav-links{max-height:320px;opacity:1;}
     .nav-toggle-label{display:flex;}
   }
-  @media(max-width:520px){.brand{font-size:0.9375rem;}.brand-mark{width:26px;height:26px;}.btn-nav{padding:0.5rem 0.8rem;font-size:0.8125rem;}.btn-nav svg{display:none;}}
+  @media(max-width:520px){.brand{font-size:0.9375rem;align-items:flex-start;}.brand-mark{width:26px;height:26px;margin-top:2px;}.brand-text{white-space:normal;display:flex;flex-direction:column;line-height:1.2;}.btn-nav{padding:0.5rem 0.8rem;font-size:0.8125rem;justify-content:center;}.btn-nav svg{display:none;}.nav-cta-full{display:none;}.nav-cta-short{display:inline;}}
+  .nav-cta-short{display:none;}
 
   .course-header{
     padding-top:var(--sp-8);padding-bottom:var(--sp-8);
@@ -188,7 +189,7 @@
         <path d="M9 20L14 12L18 17L23 9" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="23" cy="9" r="2" fill="#22D3EE"/>
       </svg>
-      Front Lines of Code
+      <span class="brand-text">Front Lines<span class="brand-of-code"> of Code</span></span>
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
     <ul class="nav-links">
@@ -198,7 +199,8 @@
     </ul>
     <div class="nav-actions">
       <a class="btn btn-primary btn-nav" href="#waitlist">
-        Join the early list
+        <span class="nav-cta-full">Join the early list</span>
+        <span class="nav-cta-short">Join List</span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation menu" tabindex="0">
@@ -284,7 +286,7 @@
         <div class="audience-card">
           <span class="eyebrow">The skeptic</span>
           <h3>"I'm not anti-AI. I just haven't seen it earn its place."</h3>
-          <p>You have a healthy distrust of hype. You're not looking for someone to convince you AI is amazing — you're looking for someone to show you what it actually does, in plain language, without the sales pitch. My wife Maureen built this course alongside me for exactly that reader. She came in skeptical too.</p>
+          <p>You have a healthy distrust of hype. You're not looking for someone to convince you AI is amazing — you're looking for someone to show you what it actually does, in plain language, without the sales pitch. My wife built this course alongside me for exactly that reader. She came in skeptical too.</p>
         </div>
       </div>
     </div>
@@ -438,10 +440,10 @@
           </svg>
         </div>
         <div class="instructor-copy">
-          <span class="eyebrow" style="display:block;margin-bottom:var(--sp-2);">Instructors</span>
-          <h2>Nick and Maureen Benes</h2>
+          <span class="eyebrow" style="display:block;margin-bottom:var(--sp-2);">Instructor</span>
+          <h2>Nick Benes</h2>
           <p>Nick is an engineer who's spent a decade building systems under constraint — from DoD networks to a daily AI-powered operating system for his own family. He uses the tools he teaches, including the exact family-brain, meal-planning, and email workflows in this course.</p>
-          <p><strong>Maureen came at this skeptical.</strong> She has an ABD in trauma and grief research, five kids, and a healthy suspicion of anything that promises to "solve" the mental load of parenting. She shaped every module in this course — the privacy framing, the realistic expectations, the places where AI genuinely helps and the places where it doesn't. If the course passes her test, it'll pass yours.</p>
+          <p><strong>She came at this skeptical.</strong> She has an ABD in trauma and grief research, five kids, and a healthy suspicion of anything that promises to "solve" the mental load of parenting. She shaped every module in this course — the privacy framing, the realistic expectations, the places where AI genuinely helps and the places where it doesn't. If the course passes her test, it'll pass yours.</p>
         </div>
       </div>
     </div>

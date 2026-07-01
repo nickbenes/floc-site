@@ -70,10 +70,13 @@
     .nav-toggle-label{display:flex;}
   }
   @media(max-width:520px){
-    .brand{font-size:0.9375rem;}.brand-mark{width:26px;height:26px;}
-    .btn-nav{padding:0.5rem 0.8rem;font-size:0.8125rem;}.btn-nav svg{display:none;}
+    .brand{font-size:0.9375rem;align-items:flex-start;}.brand-mark{width:26px;height:26px;margin-top:2px;}
+    .brand-text{white-space:normal;display:flex;flex-direction:column;line-height:1.2;}
+    .btn-nav{padding:0.5rem 0.8rem;font-size:0.8125rem;justify-content:center;}.btn-nav svg{display:none;}
+    .nav-cta-full{display:none;}.nav-cta-short{display:inline;}
     .nav-inner{gap:var(--sp-2);}
   }
+  .nav-cta-short{display:none;}
 
   /* ===== HERO + CAROUSEL ===== */
   .hero{
@@ -268,7 +271,7 @@
         <path d="M9 20L14 12L18 17L23 9" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="23" cy="9" r="2" fill="#22D3EE"/>
       </svg>
-      Front Lines of Code
+      <span class="brand-text">Front Lines<span class="brand-of-code"> of Code</span></span>
     </a>
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
@@ -282,7 +285,8 @@
 
     <div class="nav-actions">
       <a class="btn btn-primary btn-nav" href="#signup">
-        Join the early list
+        <span class="nav-cta-full">Join the early list</span>
+        <span class="nav-cta-short">Join List</span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation menu" tabindex="0">
@@ -430,7 +434,7 @@
             <span class="hero-line">Your brain is always full.</span>
             <span class="hero-line accent">There's something that can hold some of that.</span>
           </h1>
-          <p class="lead">Built with my wife Maureen, who came at this skeptical. Practical, privacy-aware ways to use AI at home — starting with a free webinar, no subscription required to watch.</p>
+          <p class="lead">Built with my wife, who came at this skeptical. Practical, privacy-aware ways to use AI at home — starting with a free webinar, no subscription required to watch.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="parents.html">
               See the course
@@ -578,7 +582,7 @@
         <div class="card-body">
           <span class="card-tag">Course · Parents</span>
           <h3>AI for Busy Parents</h3>
-          <p>For parents who've tried AI once, hit a privacy worry or a tool that forgot everything overnight, and gave up. Built with my wife Maureen, who came at this skeptical — practical, privacy-aware ways to use AI at home.</p>
+          <p>For parents who've tried AI once, hit a privacy worry or a tool that forgot everything overnight, and gave up. Built with my wife, who came at this skeptical — practical, privacy-aware ways to use AI at home.</p>
           <a class="card-link" href="parents.html">
             See the course
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
